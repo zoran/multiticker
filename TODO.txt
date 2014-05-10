@@ -1,0 +1,12 @@
+# deployment
+- make staging working
+- make revert working (+migration)
+
+# tests
+- fix them
+
+# other
+- logrotate needed on server?
+- monitor services, health, etc. and send emails
+- check continuously if exchanges changed their API or data format
+- archive DB after 1 year

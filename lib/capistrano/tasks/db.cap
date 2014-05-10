@@ -1,0 +1,16 @@
+namespace :deploy do
+  namespace :db do
+    %w(create migrate reset rollback seed setup).each do |command|
+      desc "Rake db:#{ command }"
+      task "#{ command }" do
+        on roles(:app), in: :sequence, wait: 1 do
+          within release_path do
+            with rack_env: fetch(:rack_env) do
+              execute :rake, 'db:migrate'
+            end
+          end
+        end
+      end
+    end
+  end
+end

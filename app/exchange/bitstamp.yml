@@ -1,0 +1,25 @@
+# encoding: UTF-8
+
+name:
+  long:   Bitstamp
+  intern: bitstamp  # Used for objects, variables etc.
+
+api:
+  request:
+    url:      https://www.bitstamp.net/api/ticker/
+    options:
+    interval: 2 # In seconds
+    pairs:
+              - btc_usd
+
+response_attr_map:
+  timestamp: timestamp
+  high: high
+  low: low
+  avg: avg
+  volume: volume
+  vol_cur: vol_cur
+  last: last
+  bid: bid
+  vwap: vwap
+  ask: ask

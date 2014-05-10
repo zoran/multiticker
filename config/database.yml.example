@@ -1,0 +1,14 @@
+global: &global
+  adapter: postgres
+  search_path: 'public'
+  template: template1
+  encoding: UTF8
+  pool: 5
+  host: localhost
+  port: 5432
+
+production:
+  <<: *global
+  database: multiticker_production
+  username: < username >
+  password: < password >

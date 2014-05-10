@@ -1,0 +1,10 @@
+.git export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
+Capfile export-ignore
+config/deploy.rb export-ignore
+config/database.yml.example export-ignore
+config/sidekiq.yml.example export-ignore
+test/ export-ignore
+config/deploy/ export-ignore
+lib/capistrano/ export-ignore

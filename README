@@ -1,0 +1,32 @@
+# start Redis
+    redis-server
+
+# start sidekiq
+    sidekiq -r ./app.rb -e development -C ./config/sidekiq.yml
+
+# start pry
+    pry
+
+# Initialize a platform
+    btce = Bittracktor::MultiTicker::Exchange.new(platform_name: 'btce', pairs: ['ltc_usd'])
+
+# Start a platform ticker
+    btce.ticker.start
+
+# Receive ticker response
+    require_relative 'app/receiver'
+    rec = Bittracktor::MultiTicker::Receiver.new
+    rec.listen('btce')
+
+# Stop a platform ticker
+    btce.ticker.stop
+
+# Check if ticker data were written to DB
+    Bittracktor::MultiTicker::Btce.last
+
+# Credentials
+# set systems envs (/etc/environment on servers)
+##  sidekiq web credentials
+    MULTITICKER_USERNAME="username"
+    MULTITICKER_PASSWORD="password"
+    MULTITICKER_REDIS_PASSWORD="password"

@@ -1,0 +1,25 @@
+#!/usr/bin/env puma
+
+environment ENV['RACK_ENV'] || 'development'
+directory './'
+rackup 'config.ru'
+tag 'multiticker'
+
+daemonize true
+pidfile 'tmp/pids/puma.pid'
+state_path 'tmp/pids/puma.state'
+stdout_redirect 'log/puma_access.log', 'log/puma_error.log', true
+
+threads 4,16
+
+bind 'tcp://0.0.0.0:9000'
+activate_control_app 'unix://tmp/sockets/pumactl.sock'
+
+workers 1
+
+#preload_app!
+
+on_restart do
+  puts 'Refreshing Gemfile'
+  ENV["BUNDLE_GEMFILE"] = "Gemfile"
+end
